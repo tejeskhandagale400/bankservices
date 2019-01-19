@@ -22,25 +22,30 @@ public class TransactionApplication {
 		return new RestTemplate();
 	}
 	
-	@Bean
-	public CommandLineRunner savingTransactions(TransactionRepository transactionRepository)
-	{
-		return (args)->{
-			transactionRepository.save(new Transaction(101, 4141.00, TransactionType.DEPOSIT, "Atm"));
-			transactionRepository.save(new Transaction(102, 222.00, TransactionType.DEPOSIT, "Paytm"));
-			transactionRepository.save(new Transaction(103, 4141.00, TransactionType.DEPOSIT, "Atm"));
-			transactionRepository.save(new Transaction(104, 555.00, TransactionType.WITHDRAW, "Neft"));
-			transactionRepository.save(new Transaction(105, 98.00, TransactionType.DEPOSIT, "Atm"));
-			transactionRepository.save(new Transaction(106, 787.00, TransactionType.WITHDRAW, "Timepass"));
-			transactionRepository.save(new Transaction(107, 66.00, TransactionType.DEPOSIT, "Atm"));
-			transactionRepository.save(new Transaction(108, 945.00, TransactionType.WITHDRAW, "Freee"));
-			transactionRepository.save(new Transaction(109, 213.00, TransactionType.DEPOSIT, "Atm"));
-			transactionRepository.save(new Transaction(110, 4141.00, TransactionType.WITHDRAW, "Salary"));
-			transactionRepository.save(new Transaction(111, 4141.00, TransactionType.DEPOSIT, "Atm"));
-			
-			
-		};
-		
-	}
+	/*
+	 * @Bean public CommandLineRunner savingTransactions(TransactionRepository
+	 * transactionRepository) { return (args)->{ transactionRepository.save(new
+	 * Transaction(101, 4141.00, TransactionType.DEPOSIT, "Atm"));
+	 * transactionRepository.save(new Transaction(102, 222.00,
+	 * TransactionType.DEPOSIT, "Paytm")); transactionRepository.save(new
+	 * Transaction(103, 4141.00, TransactionType.DEPOSIT, "Atm"));
+	 * transactionRepository.save(new Transaction(104, 555.00,
+	 * TransactionType.WITHDRAW, "Neft")); transactionRepository.save(new
+	 * Transaction(105, 98.00, TransactionType.DEPOSIT, "Atm"));
+	 * transactionRepository.save(new Transaction(106, 787.00,
+	 * TransactionType.WITHDRAW, "Timepass")); transactionRepository.save(new
+	 * Transaction(107, 66.00, TransactionType.DEPOSIT, "Atm"));
+	 * transactionRepository.save(new Transaction(108, 945.00,
+	 * TransactionType.WITHDRAW, "Freee")); transactionRepository.save(new
+	 * Transaction(109, 213.00, TransactionType.DEPOSIT, "Atm"));
+	 * transactionRepository.save(new Transaction(110, 4141.00,
+	 * TransactionType.WITHDRAW, "Salary")); transactionRepository.save(new
+	 * Transaction(111, 4141.00, TransactionType.DEPOSIT, "Atm"));
+	 * 
+	 * 
+	 * };
+	 * 
+	 * }
+	 */
 }
 

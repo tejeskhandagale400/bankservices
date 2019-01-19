@@ -24,11 +24,38 @@ public class TransactionResource {
 
 	@PostMapping
 	public ResponseEntity<Transaction> deposit(@RequestBody Transaction transaction) {
-		System.out.println("inside deposite ");
-		ResponseEntity<Double> entity = restTemplate.getForEntity(
+ 		ResponseEntity<Double> entity = restTemplate.getForEntity(
 				"http://localhost:9090/accounts/" + transaction.getAccountNumber()+"/balance", Double.class);
 		Double currentBalance = entity.getBody();
 		Double updateBalance = transactionService.deposit(transaction.getAccountNumber(),
+				transaction.getTransactionDetails(), currentBalance, transaction.getAmount());
+		restTemplate.put(
+				"http://localhost:9090/accounts/" + transaction.getAccountNumber() + "?balance=" + updateBalance,
+				null);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+
+	}
+	
+	@PostMapping("/{withdraw}")
+	public ResponseEntity<Transaction> withdraw(@RequestBody Transaction transaction) {
+ 		ResponseEntity<Double> entity = restTemplate.getForEntity(
+				"http://localhost:9090/accounts/" + transaction.getAccountNumber()+"/balance", Double.class);
+		Double currentBalance = entity.getBody();
+		Double updateBalance = transactionService.withdraw(transaction.getAccountNumber(),
+				transaction.getTransactionDetails(), currentBalance, transaction.getAmount());
+		restTemplate.put(
+				"http://localhost:9090/accounts/" + transaction.getAccountNumber() + "?balance=" + updateBalance,
+				null);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+
+	}
+	
+	@PostMapping("/{fund}/a")
+	public ResponseEntity<Transaction> fundtransfer(@RequestBody Transaction transaction) {
+ 		ResponseEntity<Double> entity = restTemplate.getForEntity(
+				"http://localhost:9090/accounts/" + transaction.getAccountNumber()+"/balance", Double.class);
+		Double currentBalance = entity.getBody();
+		Double updateBalance = transactionService.withdraw(transaction.getAccountNumber(),
 				transaction.getTransactionDetails(), currentBalance, transaction.getAmount());
 		restTemplate.put(
 				"http://localhost:9090/accounts/" + transaction.getAccountNumber() + "?balance=" + updateBalance,

@@ -24,4 +24,17 @@ public class TransactionServiceImpl implements TransactionService {
 		return currentBalance;
 		
 	}
+	
+	public Double withdraw(int accountNumber , String transactionDetails,double currentBalance, double amount){
+		Transaction transaction =  new Transaction(accountNumber, amount, TransactionType.WITHDRAW, transactionDetails);
+		if(currentBalance>amount)
+		{
+		currentBalance -= amount; 
+		}
+		transaction.setCurrentBalance(currentBalance);
+		transaction.setTransactionDate(LocalDateTime.now());
+		transactionRepository.save(transaction);
+		return currentBalance;
+		
+	}
 }
